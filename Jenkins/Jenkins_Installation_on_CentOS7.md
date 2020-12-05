@@ -3,7 +3,7 @@
 ## Login as root user and install latest OpenJDK1.8:
 
 ```shell
-#yum - update
+#yum -y update
 #yum -y install java-1.8*
 ```
 
