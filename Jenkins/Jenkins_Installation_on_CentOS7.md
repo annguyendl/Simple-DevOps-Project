@@ -96,13 +96,13 @@ Click [X] on Get started screen to Skip Plugin Installation
 
 ### Change admin password:
 
->  [Admin] top menu > Configure > Password
+`Admin` top menu > `Configure` > `Password`
 
  
 
 ### Configure java path:
 
->  Manage Jenkins > Global Tool Configuration > JDK
+`Manage Jenkins` > `Global Tool Configuration` > `JDK`
 
 - Name=OpenJDK1.8
 - JAVA_HOME=/usr/lib/jvm/java-1.8.0
@@ -111,28 +111,28 @@ Click [X] on Get started screen to Skip Plugin Installation
 
 ## Create another admin user id:
 
-> Manage Jenkins > Manage User > Create User
+`Manage Jenkins` > `Manage User` > `Create User`
 
 
 
 ## Test Jenkins Jobs:
 
-> Jenkins > New Item >
+`Jenkins` > `New Item` >
 
 Enter an item name
 
 - Item name=My_First_Project
 - Freestyle project
 
-[OK] button
+`OK` button
 
 Build 
 
 - Execute shell=echo "Welcome to Jenkins Demo"
 
-[Save] button > [Build Now] icon
+`Save` button > `Build Now` icon
 
-Check "Console output"
+Check "`Console output`"
 
  
 
@@ -150,7 +150,7 @@ Install git packages on jenkins server
 
 ## Setup Git on Jenkins console:
 
->  Manage Jenkins > Manage Plugins > Available > Search "github" > Select "GitHub" > Click [Install without restart]
+`Manage Jenkins` > `Manage Plugins` > `Available` > Search "github" > Select "GitHub" > Click `Install without restart`
 
 Waiting until whole dependency plugins are installed Success
 
@@ -158,7 +158,7 @@ Waiting until whole dependency plugins are installed Success
 
 ## Configure git path:
 
->  Manage Jenkins > Global Tool Configuration > 
+`Manage Jenkins` > `Global Tool Configuration` > 
 
 - Name=git
 - Path to Git executable=/usr/bin/git
@@ -220,15 +220,15 @@ Check Maven version:
 
 ## Install maven plugin without restart:
 
-> Manage Jenkins > Manage Plugins > Available > "Maven Invoker" > [Install without restart]
+`Manage Jenkins` > `Manage Plugins` > `Available` > search and choose "*Maven Invoker*" > `Install without restart` button
 
-> Manage Jenkins > Manage Plugins > Available > "Maven Integration" > [Install without restart]
+`Manage Jenkins` > `Manage Plugins` > `Available` > search and choose "*Maven Integration*" > `Install without restart` button
 
 
 
 ## Configure maven path:
 
->  Manage Jenkins > Global Tool Configuration > Maven
+`Manage Jenkins` > `Global Tool Configuration` > `Maven`
 
 Add Maven
 
@@ -241,14 +241,14 @@ Add Maven
 
 ## New Maven project:
 
->  Jenkins > New Item > 
+`Jenkins` > `New Item` > 
 
 Enter an item name
 
 - Item name=Build_Maven_project
 - Maven project
 
-> [OK]
+`OK` button
 
 Description: Build Maven project from Git project
 
@@ -264,7 +264,7 @@ Build:
 - Root POM=pom.xml
 - Goals and options=clean install package
 
-> [Apply] > [Save] > Build Now
+`Apply` > `Save` > `Build Now`
 
   
 
