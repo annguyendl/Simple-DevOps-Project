@@ -108,7 +108,7 @@ Restart tomcat after configuration update
 Enable firewall for Tomcat:
 
 ```shell
-#firewall-cmd --zone=public --permanent --add-port=8080/tcp
+#firewall-cmd --zone=public --permanent --add-port=8090/tcp
 #systemctl reload firewalld
 ```
 
