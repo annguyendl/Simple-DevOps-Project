@@ -114,7 +114,7 @@ Enable firewall for Tomcat:
 
  
 
-### Check access tomcat application from browser on port 8080:
+### Check access tomcat application from browser on new port 8090:
 
 http://192.168.x.x:8090
 
