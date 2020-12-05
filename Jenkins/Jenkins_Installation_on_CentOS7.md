@@ -202,7 +202,7 @@ Setup M2_HOME and M2 paths in .bash_profile of the user and add these to the pat
 #nano ~/.bash_profile
 M2_HOME=/opt/maven/apache-maven-3.6.3
 M2=$M2_HOME/bin
-PATH=<Existing_PATH>:$M2_HOME:$M2
+PATH=$PATH:$HOME/bin:$JAVA_HOME:$M2_HOME:$M2
 #source ~/.bash_profile
 ```
 
