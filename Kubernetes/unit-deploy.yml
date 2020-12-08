@@ -1,0 +1,26 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: unit-deployment
+spec:
+  selector:
+    matchLabels:
+      app: unit-devops-project
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+
+  template:
+    metadata:
+      labels:
+        app: unit-devops-project
+    spec:
+      containers:
+      - name: unit-devops-project
+        image: annvt/simple-devops-image
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080

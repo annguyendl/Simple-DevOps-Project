@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: false
+
+  tasks:
+  - name: stop if we have old docker container
+    command: docker stop simple-devops-container
+    ignore_errors: yes
+
+  - name: remove stopped docker container
+    command: docker rm simple-devops-container
+    ignore_errors: yes
+
+  - name: remove exiting images
+    command: docker rmi annguyendl/simple-devops-image
+    ignore_errors: yes
+
+  - name: pull image from DockerHub
+    command: docker pull annguyendl/simple-devops-image
+
+  - name: creating docker image using docker command
+    command: docker run -d --name simple-devops-container -p 8080:8080 annguyendl/simple-devops-image
