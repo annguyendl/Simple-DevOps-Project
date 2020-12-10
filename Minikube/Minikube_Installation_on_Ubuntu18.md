@@ -7,15 +7,8 @@ Reference URL : https://docs.docker.com/install/linux/docker-ce/centos/#install-
 ## Install the required packages:
 
 ```shell
-#yum -y install yum-utils device-mapper-persistent-data lvm2 nano
-```
-
- 
-
-Set up the stable repository:
-
-```shell
-#yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+#sudo apt-get update -y
+#sudo apt-get upgrade -y
 ```
 
  
@@ -23,20 +16,18 @@ Set up the stable repository:
 Install the latest version of Docker CE:
 
 ```shell
-#yum -y install docker-ce
+#sudo apt install docker.io
 ```
-
-Note: If prompted to accept the GPG key, verify that the fingerprint matches 060A 61C5 1B55 8A7F 742B 77AA C52F EB6B 621E 9F35, and if so, accept it.
 
  
 
 Enable and start Docker service:
 
 ```shell
-#systemctl enable docker
-#systemctl start docker
-#systemctl status docker
-#docker version
+#sudo systemctl enable docker
+#sudo systemctl start docker
+#sudo systemctl status docker
+#sudo docker version
 ```
 
  
@@ -49,9 +40,9 @@ Enable and start Docker service:
 #KUBE_VERSION=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
 #echo $KUBE_VERSION
 #cd /opt/
-#curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/${KUBE_VERSION}/bin/linux/amd64/kubectl
-#chmod +x kubectl
-#mv -f kubectl /usr/local/bin/
+#sudo curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/${KUBE_VERSION}/bin/linux/amd64/kubectl
+#sudo chmod +x kubectl
+#sudo mv -f kubectl /usr/local/bin/
 #kubectl version
 ```
 
@@ -61,21 +52,22 @@ Enable and start Docker service:
 
 # Install Minikube:
 
-## Download and install minikube:
+## Install conntrack-tools required by minukube:
 
 ```shell
-#cd ~
-#curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-#install minikube-linux-amd64 /usr/local/bin/minikube
-#minikube version
+#sudo apt install conntrack
 ```
 
  
 
-## Install conntrack-tools required by minukube:
+## Download and install minikube:
 
 ```shell
-#yum -y install conntrack-tools
+#cd ~
+#sudo curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+#sudo cp minikube-linux-amd64 /usr/local/bin/minikube
+#sudo chmod 755 /usr/local/bin/minikube
+#minikube version
 ```
 
  
@@ -117,11 +109,11 @@ Enable and start Docker service:
 (*1) coredns error: CrashLoopBackOff: dial tcp ip:443: connect: no route to host
 
 ```shell
-#iptables -P FORWARD ACCEPT
-#iptables --flush
-#iptables -tnat --flush
-#minikube stop
-#minikube start
+#sudo iptables -P FORWARD ACCEPT
+#sudo iptables --flush
+#sudo iptables -tnat --flush
+#sudo minikube stop
+#sudo minikube start
 ```
 
  
