@@ -8,13 +8,12 @@ Follow this on **[YouTube](https://www.youtube.com/watch?v=nE4b9mW2ym0)**
 
 ### Part-01 Integration Setps
 
-Install "publish Over SSH"
+Install "Publish Over SSH"
  - `Manage Jenkins` > `Manage Plugins` > `Available` > `Publish over SSH` 
 
 Enable connection between Ansible and Jenkins
 - `Manage Jenkins` > `Configure System` > `Publish Over SSH` > `SSH Servers` 
-
-	- SSH Servers:
+- SSH Servers:
 		- Hostname:`<ServerIP>`
 		- username: `ansadm`
 		- password: `*******`
