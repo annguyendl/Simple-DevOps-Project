@@ -5,74 +5,79 @@ Ansible is an open-source automation platform. It is very, very simple to set up
 ### Pre-requisites
 
 1. An AWS EC2 instance (on Control node)
+2. Installed `docker`
 
 ### Installation steps:
-#### on Amazon EC2 instance
+#### on Amazon EC2 instance of `ansible-server`
 
-1. Install python and python-pip
+Install python and python-pip
+```sh
+#yum -y install python
+#yum -y install python-pip
+```
+
+Install ansible using pip check for version
+```sh
+#pip install ansible
+#ansible --version
+```
+
+Create a user called `ansadmin` on both Control node (`ansible-server`) and Managed hosts  
+
+```sh
+#useradd ansadmin
+#passwd ansadmin
+```
+
+Below command grant `sudo` access to `ansadmin` user. But we strongly recommended using "visudo" command if you are aware vi or nano editor.  (on Control node and Managed host)
+```sh
+#echo "ansadmin ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+```
+
+Log in as a ansadmin user on Control node (`ansible-server`) and generate ssh key 
+```sh 
+#sudo su - ansadmin
+#ssh-keygen
+```
+
+Copy keys onto all ansible managed hosts (on Control node)
+```sh 
+#ssh-copy-id ansadmin@<target-server>
+```
+
+Ansible server used to create images and store on docker registry. Hence install docker, start docker services and add ansadmin to the docker group. 
+```sh
+#yum -y install docker
+
+## start docker services at host start 
+#systemctl enable docker
+
+## start docker services 
+#systemctl start docker
+
+##check docker services status 
+#systemctl status docker
+
+```
+
+Add ansadmin to docker group
+
+```sh
+#usermod -aG docker ansadmin
+#id ansadmin
+```
+
+Create a directory `/etc/ansible` and create an inventory file called "`/etc/ansible/hosts`" add control node and managed hosts IP addresses to it.
+
    ```sh
-   #yum -y install python
-   #yum -y install python-pip
-   ```
-   
-1. Install ansible using pip check for version
-    ```sh
-    #pip install ansible
-   #ansible --version
-   ```
-   
-1. Create a user called ansadmin (on Control node and Managed host)  
-   ```sh
-   #useradd ansadmin
-   #passwd ansadmin
-   ```
-   
-1. Below command grant sudo access to ansadmin user. But we strongly recommended using "visudo" command if you are aware vi or nano editor.  (on Control node and Managed host)
-   ```sh
-   #echo "ansadmin ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-   ```
-   
-1. Log in as a ansadmin user on master and generate ssh key (on Control node)
-   ```sh 
-   #sudo su - ansadmin
-   #ssh-keygen
-   ```
-   
-1. Copy keys onto all ansible managed hosts (on Control node)
-   ```sh 
-   ssh-copy-id ansadmin@<target-server>
+#mkdir /etc/ansible
+#nano /etc/ansible/hosts
+localhost ansible_connection=local
+managed-hosts-IP ansible_user=ansadmin   
    ```
 
-1. Ansible server used to create images and store on docker registry. Hence install docker, start docker services and add ansadmin to the docker group. 
-   ```sh
-   #yum -y install docker
-   
-   ## start docker services at host start 
-   #systemctl enable docker
-   
-   ## start docker services 
-   #systemctl start docker
-   
-## check docker services status 
-   #systemctl status docker
-   ```
-   
-1. Add ansadmin to docker group
+Validation test
 
-    ```sh
-    ## add user to docker group 
-    #usermod -aG docker ansadmin
-    
-    ## check ansadmin account group
-    #id ansadmin
-    ```
-
-1. Create a directory /etc/ansible and create an inventory file called "hosts" add control node and managed hosts IP addresses to it. 
-
-### Validation test
-
-
-1. Run ansible command as ansadmin user it should be successful (Master)
-   ```sh 
-   #ansible all -m ping
-   ```
+```sh
+#ansible all -m ping
+```
