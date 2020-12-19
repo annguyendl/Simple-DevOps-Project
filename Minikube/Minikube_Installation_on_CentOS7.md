@@ -1,3 +1,13 @@
+# Check VM support Virtual Machine or not:
+
+```sh
+#grep -E --color 'vmx|svm' /proc/cpuinfo
+```
+
+Ensure result is not null before continue to process setup Minikube.
+
+
+
 # Install Docker CE:
 
 Reference URL : https://docs.docker.com/install/linux/docker-ce/centos/#install-using-the-repository
